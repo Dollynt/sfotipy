@@ -23,15 +23,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private customValidator: CustomvalidationService,
-    private registerService: UserService,
-    private router: Router,
-    private loginService: LoginService,
+    public registerService: UserService,
+    public router: Router,
+    public loginService: LoginService,
     private titleService: Title
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Cadastro");
-    
+
     this.redirectToHomePage();
     this.RegisterForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -96,8 +96,6 @@ export class RegisterComponent implements OnInit {
           } else {
             this.registerService.addUser(data).subscribe(
               ({ files, token }) => {
-                console.log(files);
-                console.log(token);
                 localStorage.setItem('currentUser', JSON.stringify({ email: files.email, token: token, id: files.id }));; // Armazenando o token no localStorage do navegador
                 if (files && files.id !== undefined) {
                   const userId = files.id;
@@ -112,7 +110,7 @@ export class RegisterComponent implements OnInit {
       )
 
     } else {
-      console.log('envio não efetuado');
+      console.log('Envio não efetuado');
     }
   }
 }
