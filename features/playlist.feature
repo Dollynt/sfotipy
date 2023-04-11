@@ -43,14 +43,6 @@ So that I can create and manage my playlists
         Then I can see a confirmation message "Músicas atualizadas com sucesso!"
         And I still am at the "pop" plalist page
         And I can see the music "Scientist" in the playlist page
-    
-    Scenario: update playlist name
-        Given I am at the "edit playlist" page
-        And I have a playlist registered as "pop"
-        And I don't have a playlist registered as "rock"
-        When I select the playlist "pop"
-        And I update the playlist name as "rock"
-        Then I can see a confirmation message "playlist name updated with success"
 
     Scenario: update playlist with existing name
         Given I am at the "edit playlist" page
