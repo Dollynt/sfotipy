@@ -11,7 +11,9 @@ import { Usera } from '../../../common/Usera'
 export class UserService implements OnInit {
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     appURL = 'http://localhost:3000';
-    private userId = new BehaviorSubject<number>(0);
+    private userId = new BehaviorSubject<number>(
+        JSON.parse(localStorage.getItem('currentUser') || '{}').id || 0
+    );
     private lastId = 0;
 
     private httpOptions = {
