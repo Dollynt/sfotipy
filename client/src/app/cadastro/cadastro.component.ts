@@ -31,9 +31,9 @@ export class RegisterComponent implements OnInit {
     this.redirectToHomePage();
     this.RegisterForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]],
+      senha: ['', [Validators.required, Validators.maxLength(16)]],
       ConfirmarSenha: ['', [Validators.required]],
-      nome: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.maxLength(16)]],
     },
       {
         validator: this.customValidator.MatchPassword('senha', 'ConfirmarSenha'),

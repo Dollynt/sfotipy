@@ -1,86 +1,96 @@
 <body>
-  <div class="tela-cadastro">
-    <div class="titulo-cadastro">
-      <h1>Cadastro</h1>
+  <div class="tela">
+    <div class="tela-cadastro">
+      <div class="titulo-cadastro">
+        <h1>Cadastro</h1>
+      </div>
+      <div class="input-group">
+
+        <form [formGroup]="RegisterForm" (ngSubmit)="submit()" #formDir="ngForm">
+          <div class="input-box">
+            <label for="email" class="nomes-input">Qual o seu e-mail?</label>
+            <label for="email">
+              <img src="../../assets/email_branco.svg" class="icones" id="email-i" alt="icone de email">
+            </label>
+            <input id="email" type="email" name="email" placeholder="exemplo@gmail.com" formControlName="email">
+            <div class="validation-error">
+              <div *ngIf="(email.touched || submitted) && email.errors?.['required']"><img
+                  src="../../assets/erro_input.svg">
+                <p>O email é obrigatório!</p>
+              </div>
+              <div *ngIf="email.touched && email.errors?.['email']"><img src="../../assets/erro_input.svg">
+                <p>Email inválido!</p>
+              </div>
+              <div *ngIf="email.errors?.['emailExists']"><img src="../../assets/erro_input.svg">
+                <p>Este endereço de e-mail já está em uso</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="senha" class="nomes-input">Crie uma senha</label>
+            <label for="senha">
+              <img src="../../assets/senha_branco.svg" class="icones" id="senha-i" alt="icone de senha">
+            </label>
+            <input id="senha" type="password" name="senha" placeholder="••••••••" formControlName="senha">
+            <div class="validation-error">
+              <div *ngIf="(senha.touched || submitted) && senha.errors?.['required']"><img
+                  src="../../assets/erro_input.svg">
+                <p> A senha precisa ser inserida!</p>
+              </div>
+              <div *ngIf="(senha.touched || submitted) && senha.errors?.['maxlength']"><img
+                  src="../../assets/erro_input.svg">
+                <p> A senha precisa ter no máximo 16 caractéres.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="ConfirmarSenha" class="nomes-input">Confirme sua senha</label>
+            <label for="ConfirmarSenha">
+              <img src="../../assets/senha_branco.svg" class="icones" id="senhas-i" alt="icone de senha">
+            </label>
+            <input id="ConfirmarSenha" type="password" name="ConfirmarSenha" placeholder="••••••••"
+              formControlName="ConfirmarSenha">
+            <div class="validation-error">
+              <div *ngIf="(ConfirmarSenha.touched || submitted) && ConfirmarSenha.errors?.['required']"><img
+                  src="../../assets/erro_input.svg">
+                <p>É obrigatório confirmar a sua senha </p>
+              </div>
+              <div *ngIf="ConfirmarSenha.touched && ConfirmarSenha.errors?.['passwordMismatch']"><img
+                  src="../../assets/erro_input.svg">
+                <p> As senhas não coincidem!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="nome" class="nomes-input">Como devemos lhe chamar?</label>
+            <label for="nome">
+              <img src="../../assets/usuario_branco.svg" class="icones" id="usuario-i" alt="icone de usuario">
+            </label>
+            <input id="nome" type="text" name="nome" placeholder="Insira um nome de perfil" formControlName="nome">
+            <div class="validation-error">
+              <div *ngIf="(nome.touched || submitted) && nome.errors?.['required']"><img
+                  src="../../assets/erro_input.svg">
+                <p>Insira um nome </p>
+              </div>
+              <div *ngIf="(nome.touched || submitted) && nome.errors?.['maxlength']"><img
+                  src="../../assets/erro_input.svg">
+                <p> A o seu nome de usuário deve conter menos de 16 caractéres.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cadastro-botao"><button type="submit" [disabled]="RegisterForm.invalid">Cadastrar-se</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="input-group">
-
-      <form [formGroup]="RegisterForm" (ngSubmit)="submit()" #formDir="ngForm">
-        <div class="input-box">
-          <label for="email" class="nomes-input">Qual o seu e-mail?</label>
-          <label for="email">
-            <img src="../../assets/email_branco.svg" class="icones" id="email-i" alt="icone de email">
-          </label>
-          <input id="email" type="email" name="email" placeholder="exemplo@gmail.com" formControlName="email">
-          <div class="validation-error">
-            <div *ngIf="(email.touched || submitted) && email.errors?.['required']"><img
-                src="../../assets/erro_input.svg">
-              <p>O email é obrigatório!</p>
-            </div>
-            <div *ngIf="email.touched && email.errors?.['email']"><img src="../../assets/erro_input.svg">
-              <p>Email inválido!</p>
-            </div>
-            <div *ngIf="email.errors?.['emailExists']"><img src="../../assets/erro_input.svg">
-              <p>Este endereço de e-mail já está em uso</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-box">
-          <label for="senha" class="nomes-input">Crie uma senha</label>
-          <label for="senha">
-            <img src="../../assets/senha_branco.svg" class="icones" id="senha-i" alt="icone de senha">
-          </label>
-          <input id="senha" type="password" name="senha" placeholder="••••••••" formControlName="senha">
-          <div class="validation-error">
-            <div *ngIf="(senha.touched || submitted) && senha.errors?.['required']"><img
-                src="../../assets/erro_input.svg">
-              <p> A senha precisa ser inserida!</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-box">
-          <label for="ConfirmarSenha" class="nomes-input">Confirme sua senha</label>
-          <label for="ConfirmarSenha">
-            <img src="../../assets/senha_branco.svg" class="icones" id="senhas-i" alt="icone de senha">
-          </label>
-          <input id="ConfirmarSenha" type="password" name="ConfirmarSenha" placeholder="••••••••"
-            formControlName="ConfirmarSenha">
-          <div class="validation-error">
-            <div *ngIf="(ConfirmarSenha.touched || submitted) && ConfirmarSenha.errors?.['required']"><img
-                src="../../assets/erro_input.svg">
-              <p>É obrigatório confirmar a sua senha </p>
-            </div>
-            <div *ngIf="ConfirmarSenha.touched && ConfirmarSenha.errors?.['passwordMismatch']"><img
-                src="../../assets/erro_input.svg">
-              <p> As senhas não coincidem!</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="input-box">
-          <label for="nome" class="nomes-input">Como devemos lhe chamar?</label>
-          <label for="nome">
-            <img src="../../assets/usuario_branco.svg" class="icones" id="usuario-i" alt="icone de usuario">
-          </label>
-          <input id="nome" type="text" name="nome" placeholder="Insira um nome de perfil" formControlName="nome">
-          <div class="validation-error">
-            <div *ngIf="(nome.touched || submitted) && nome.errors?.['required']"><img
-                src="../../assets/erro_input.svg">
-              <p>Insira um nome </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="cadastro-botao"><button type="submit" [disabled]="RegisterForm.invalid">Cadastrar-se</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="tela-redirec">
-    <div>
-      <a routerLink="/login" class="login">Já possui uma conta?<br>Clique aqui!!!</a>
+    <div class="tela-redirec">
+      <div>
+        <a routerLink="/login" class="login">Já possui uma conta?<br>Clique aqui!!!</a>
+      </div>
     </div>
   </div>
 </body>
