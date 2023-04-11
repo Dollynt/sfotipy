@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArtistasEmAltaComponent } from './artistas-em-alta.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ArtistasEmAltaComponent', () => {
   let component: ArtistasEmAltaComponent;
@@ -8,9 +9,10 @@ describe('ArtistasEmAltaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArtistasEmAltaComponent ]
+      imports: [HttpClientModule],
+      declarations: [ArtistasEmAltaComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ArtistasEmAltaComponent);
     component = fixture.componentInstance;

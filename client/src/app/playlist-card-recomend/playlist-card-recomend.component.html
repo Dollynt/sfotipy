@@ -8,18 +8,17 @@
       <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
         id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
     </div>
-    <img class="playlist-image" [src]="playlist.image" alt="Playlist cover">
+    <img class="playlist-image" [src]="playlist?.image || '/assets/default.png'" alt="Playlist cover">
     <div class="card-body">
-      <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
+      <h5 name="nome" class="card-title">{{ playlist?.name }}</h5>
     </div>
   </div>
 
   <div class="overlay" name="overlay">
     <div class="player-outer">
       <div class="player-inner">
-        <button *ngIf="isPausable()" (click)="musicPlayerService.pause()"><img src="/assets/pause.svg" alt=""></button>
-        <button *ngIf="!isPausable()" (click)="musicPlayerService.playPlaylist(playlist)"><img src="/assets/play.svg"
-            alt=""></button>
+        <button id="play-playlist-{{playlist?.name}}" name="play-button" [ngClass]="{'playing': isPausable()}"
+          (click)="playOrPauseOnClick($event)"><img src={{src}} alt=""></button>
       </div>
     </div>
 

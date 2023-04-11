@@ -62,8 +62,9 @@ svg {
     border-radius: 15px;
 
   }
+
   .campo1 {
-    position:absolute;
+    position: absolute;
     top: 5%;
     left: 5%;
     display: flex;
@@ -110,7 +111,7 @@ svg {
   }
 
   .picture_image {
-    font-size:14vw;
+    font-size: 14vw;
 
     max-height: 100%;
     display: flex;
@@ -129,7 +130,7 @@ svg {
   }
 
   .campo2 {
-    position:absolute;
+    position: absolute;
     top: 20%;
     left: 35%;
     display: flex;
@@ -139,6 +140,7 @@ svg {
     max-height: 80%;
 
   }
+
   .nomeDaPlaylist_div {
     position: absolute;
     width: 100%;
@@ -184,7 +186,6 @@ svg {
     font-size: 1vw;
     background-color: #ffe5b4;
     width: 100%;
-
   }
 
   .input_musica::placeholder {
@@ -195,9 +196,34 @@ svg {
     height: 100%;
     position: absolute;
     top: 50%;
-    left: 0.2rem; /* Posicionamento do ícone */
+    left: 0.2rem;
+    /* Posicionamento do ícone */
     transform: translateY(-50%);
-    color: #999; /* Cor do ícone */
+    color: #999;
+    /* Cor do ícone */
+  }
+
+  .popup {
+    position: absolute;
+    max-height: 200px;
+    overflow-y: auto;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .musicas_adicionadas {
+    position: absolute;
+    max-height: 30%;
+    margin-top: 17%;
+    right: 0.5vw;
+    width: 45%;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    float: left;
   }
 
   .publicavel {
@@ -261,15 +287,15 @@ svg {
     transition: .4s;
   }
 
-  input:checked + .slider {
+  input:checked+.slider {
     background-color: #2196F3;
   }
 
-  input:focus + .slider {
+  input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
   }
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     -webkit-transform: translateX(20px);
     -ms-transform: translateX(100%);
     transform: translateX(130%);
@@ -317,27 +343,27 @@ svg {
 
   .picture_input {
 
-      display: none !important;
+    display: none !important;
 
   }
 
   .picture_image {
-      font-size:170px;
-      display: flex;
-      align-items: top;
-      justify-content: center;
-      color: #5c6c78;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      justify-content: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center center;
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
+    font-size: 170px;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    color: #5c6c78;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 
   }
 
@@ -346,6 +372,7 @@ svg {
     height: 100%;
     object-fit: cover;
   }
+
   .publicar {
     color: #17232c;
     font-size: 32px;
@@ -361,6 +388,7 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .rectangle56 {
     transform-origin: top left;
     position: absolute;
@@ -372,6 +400,7 @@ svg {
     background-color: #0d2538;
     transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, 0, 0);
   }
+
   .rectangle57 {
     transform-origin: top left;
     position: absolute;
@@ -383,18 +412,20 @@ svg {
     background-color: #0d2538;
     transform: matrix(-0.7071, -0.7071, 0.7071, -0.7071, 0, 0);
   }
+
   .novaPlaylist {
     color: #1a1c2c;
     font-size: 50px;
     font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
-    position:absolute;
+    position: absolute;
     left: 5%;
     display: flex;
 
 
     flex-direction: column;
   }
+
   .emailField {
     position: absolute;
     left: 41.9444%;
@@ -404,6 +435,7 @@ svg {
     width: min-content;
     flex-direction: column;
   }
+
   .nomeDaPlaylist {
 
     position: absolute;
@@ -414,24 +446,28 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .labelWrapper {
     font-size: 20px;
     font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
     flex-shrink: 1;
   }
+
   .label {
     color: #000;
     font-size: 32px;
     font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
   }
+
   .label2 {
     color: #f00;
     font-size: 20px;
     font-family: Font Awesome 5 Free, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
   }
+
   .logInButton {
     position: absolute;
     left: 50.75%;
@@ -445,6 +481,7 @@ svg {
     background-color: #1a7fc1;
     cursor: pointer;
   }
+
   .cRIAR {
     color: #e1e1e1;
     font-size: 28px;
@@ -456,6 +493,7 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .imageInput {
     position: relative;
     left: 2%;
@@ -499,6 +537,7 @@ svg {
     border-radius: 8px;
     background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
   }
+
   .rock {
     color: #000;
     font-size: 22px;
@@ -515,6 +554,7 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .rectangle213 {
     position: absolute;
     left: 41.9444%;
@@ -524,6 +564,7 @@ svg {
     border-radius: 8px;
     background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
   }
+
   .pop {
     color: #000;
     font-size: 22px;
@@ -540,6 +581,7 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .rectangle215 {
     position: absolute;
     left: 51.1806%;
@@ -549,6 +591,7 @@ svg {
     border-radius: 8px;
     background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
   }
+
   .rectangle562 {
     position: absolute;
     left: 51.9358%;
@@ -558,6 +601,7 @@ svg {
     border-radius: 4px;
     background-color: #0d2538;
   }
+
   .rectangle572 {
     transform-origin: top left;
     position: absolute;
@@ -569,6 +613,7 @@ svg {
     background-color: #0d2538;
     transform: matrix(0, -1, 1, 0, 0, 0);
   }
+
   .categorias {
     color: #000;
     font-size: 32px;
@@ -584,6 +629,7 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
+
   .button_toggle {
     position: relative;
     left: 50%;
@@ -624,15 +670,15 @@ svg {
     transition: .4s;
   }
 
-  input:checked + .slider {
+  input:checked+.slider {
     background-color: #2196F3;
   }
 
-  input:focus + .slider {
+  input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
   }
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(100%);
     transform: translateX(100%);

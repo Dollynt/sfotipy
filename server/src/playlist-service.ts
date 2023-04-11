@@ -104,7 +104,7 @@ export class PlaylistService {
     new Playlist(<Playlist><unknown>{
       "id": 7,
       "name": "Eminem's Greatest Hits",
-      "categories": [1, 4],
+      "categories": [],
       "musics": [15, 16, 17],
       "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/eminem-miracle-studio.jpg",
       "link": "",
@@ -139,10 +139,49 @@ export class PlaylistService {
       "availability": "public",
       "accessPlaylits": 10,
       "ownerId": 6
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 10,
+      "name": "Pop Mix",
+      "categories": [2, 1],
+      "musics": [21, 22, 23, 24],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 11,
+      "name": "Electric Vibe",
+      "categories": [3, 1],
+      "musics": [21, 22, 23, 24],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 12,
+      "name": "Study lofi",
+      "categories": [6],
+      "musics": [],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
     })
   ];
 
-  idCount: number = 10;
+  idCount: number = 13;
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;
@@ -160,19 +199,17 @@ export class PlaylistService {
 
       // console.log(ownerId, playlist.ownerId)
       if (playlist.ownerId == ownerId) {
-
-        //if (playlist.owner == ownerName) {
-
+        //if (playlist.owner == ownerName) 
         playlistsReturn.push(playlist)
       }
     }
     return playlistsReturn;
   }
 
-  verificarNomePlaylistExistente(nomePlaylist: string): boolean {
-    const playlists = this.getUserPlaylists(this.idCount)
-    for (let playlist of this.playlists) {
-      if (playlist.name === nomePlaylist) {
+  verificarNomePlaylistExistente(nomePlaylist: string, ownerId: number): boolean {
+    const playlists = this.getUserPlaylists(ownerId)
+    for (let playlist of playlists) {
+      if (playlist.name === nomePlaylist && playlist.ownerId === ownerId) {
         return true;
       }
     }

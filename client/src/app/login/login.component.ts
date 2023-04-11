@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,9 +23,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private userService: UserService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Login");
     //console.log('Mensagem recebida: ', this.message);
     this.checkToken();
     this.redirectToHomePage();
@@ -90,5 +93,4 @@ export class LoginComponent implements OnInit {
       );
     }
   }
-
 }

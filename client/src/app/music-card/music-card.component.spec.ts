@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MusicCardComponent } from './music-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MusicCardComponent', () => {
   let component: MusicCardComponent;
@@ -8,9 +9,10 @@ describe('MusicCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MusicCardComponent ]
+      imports: [HttpClientModule],
+      declarations: [MusicCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MusicCardComponent);
     component = fixture.componentInstance;

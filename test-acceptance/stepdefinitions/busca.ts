@@ -39,6 +39,19 @@ defineSupportCode(function ({ Given, When, Then }) {
             await assertMusicsWithSameName(1, music4);
         });
 
+    Given(/^todo o conteúdo está visível$/, async () => {
+        await browser.refresh();
+        var isCollapsed = element(by.css('.see-more-playlist'));
+        const button = element(by.css('.see-more-playlist'));
+        await browser.executeScript('arguments[0].click()', button.getWebElement());
+        await assertIncludesInName(isCollapsed, "menos");
+
+        var isCollapsed2 = element(by.css('.see-more-music'));
+        const button2 = element(by.css('.see-more-music'));
+        await browser.executeScript('arguments[0].click()', button2.getWebElement());
+        await assertIncludesInName(isCollapsed2, "menos");
+    })
+
     Given(/^todas as músicas estão visíveis$/, async () => {
         await browser.refresh();
         var isCollapsed = element(by.css('.see-more-music'));

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'minhas_playlists', component: UserPlaylistsComponent },
   { path: 'playlist/:id', component: PlaylistComponent },
   { path: 'playlistsrecomendadas', component: PlaylistRecomendadasComponent },
+  { path: 'playlistsrecomendadas', component: PlaylistRecomendadasComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: RegisterComponent }
 ];

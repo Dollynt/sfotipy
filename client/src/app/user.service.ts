@@ -2,17 +2,17 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 import { User } from '../../../common/user';
-import { Usera } from '../../../common/usera'
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Usera } from '../../../common/Usera'
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService implements OnInit {
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private appURL = 'http://localhost:3000';
-    private lastId = 0;
+    appURL = 'http://localhost:3000';
     private userId = new BehaviorSubject<number>(0);
+    private lastId = 0;
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -61,7 +61,6 @@ export class UserService implements OnInit {
             }
             return response;
         }));
-
     }
 
     emailExists(email: string): Observable<boolean> {

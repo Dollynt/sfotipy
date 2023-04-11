@@ -30,6 +30,16 @@ So that I can create and manage my playlists
         When I insert the playlist name "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         And I insert the music "shape of you" 
         Then I can see an error message "the playlist name must not be bigger than 35"
+
+    Scenario: update playlist musics
+        Given I am at the "create_playlist" page
+        And I see a playlist registered as "pop"
+        And I go to this playlist page
+        When I go to the add music option
+        And I add the music "Scientist"
+        Then I can see a confirmation message "Músicas atualizadas com sucesso!"
+        And I return to the playlist page
+        And I can see the music "Scientist" in the playlist page
     
     Scenario: update playlist name
         Given I am at the "edit playlist" page

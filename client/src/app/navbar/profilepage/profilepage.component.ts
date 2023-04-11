@@ -1,10 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/login.service';
 import { UserService } from 'src/app/user.service';
 import { User } from '../../../../../common/user';
-import { Observable } from 'rxjs';
 
 @Component({
 
@@ -20,12 +19,13 @@ export class ProfilepageComponent {
 
 	@Output() logOutEvent = new EventEmitter<boolean>();
 
-	constructor(private userService: UserService, private loginService: LoginService) { }
+	constructor(private userService: UserService, private loginService: LoginService, private router: Router) { }
 
 	logOut() {
 		localStorage.removeItem('currentUser');
 		this.loginService.updateLoginStatus(false);
 		this.logOutEvent.emit(false);
+		this.router.navigate(['/login']);
 	}
 
 	ngOnInit(): void {

@@ -2,7 +2,7 @@
 
 
   <div class="header">
-    <img class="img" src="{{selectedPlaylist.image}}" alt="Capa da playlist" srcset="">
+    <img class="img" src="{{selectedPlaylist.image || '/assets/default.png'}}" alt="Capa da playlist" srcset="">
     <div class="content">
       <div class="text">
         <h1 class="playlist_name" name="playlist-name">{{selectedPlaylist.name}}</h1>
@@ -32,10 +32,10 @@
     <div class="player">
       <div class="player-outer">
         <div class="player-inner">
-          <button *ngIf="isPausable()" (click)="musicPlayerService.pause()"><img src="/assets/pause.svg"
-              alt=""></button>
-          <button *ngIf="!isPausable()" (click)="musicPlayerService.playPlaylist(selectedPlaylist)"><img
-              src="/assets/play.svg" alt=""></button>
+          <button id="pause-playlist-{{selectedPlaylist?.name}}" *ngIf="isPausable()"
+            (click)="musicPlayerService.pause()"><img src="/assets/pause.svg" alt=""></button>
+          <button id="play-playlist-{{selectedPlaylist?.name}}" *ngIf="!isPausable()"
+            (click)="musicPlayerService.playPlaylist(selectedPlaylist)"><img src="/assets/play.svg" alt=""></button>
         </div>
       </div>
     </div>

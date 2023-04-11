@@ -20,19 +20,19 @@ export class ArtistasEmAltaComponent {
     });
   }
   getFirstMusicAuthor(): string {
-    return this.mostAccessedSongs[0].image;
+    return this.mostAccessedSongs[0]?.image;
   }
   getSecondMusicAuthor(): string {
-    return this.mostAccessedSongs[1].image;
+    return this.mostAccessedSongs[1]?.image;
   }
   getThirdMusicAuthor(): string {
-    return this.mostAccessedSongs[2].image;
+    return this.mostAccessedSongs[2]?.image;
   }
   getFourthMusicAuthor(): string {
-    return this.mostAccessedSongs[3].image;
+    return this.mostAccessedSongs[3]?.image;
   }
   getFifthMusicAuthor(): string {
-    return this.mostAccessedSongs[4].image;
+    return this.mostAccessedSongs[4]?.image;
   }
 
 }

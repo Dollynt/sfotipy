@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistRecomendadasComponent } from './playlist-recomendadas.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PlaylistRecomendadasComponent', () => {
   let component: PlaylistRecomendadasComponent;
@@ -8,9 +9,10 @@ describe('PlaylistRecomendadasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaylistRecomendadasComponent ]
+      imports: [HttpClientModule],
+      declarations: [PlaylistRecomendadasComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PlaylistRecomendadasComponent);
     component = fixture.componentInstance;

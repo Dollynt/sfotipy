@@ -22,7 +22,7 @@ export class MusicCardComponent {
   }
 
   ngOnInit() {
-    this.category = this.categoryService.getCategorybyId(this.music.category)?.name || "";
+    this.category = this.categoryService.getCategorybyId(this.music?.category)?.name || "";
   }
 
   playMusic() {

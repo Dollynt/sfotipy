@@ -1,8 +1,8 @@
 <div class="player-outer">
-    <div class="player-inner">
-        <button *ngIf="musicPlayerService.getCurrentState()" (click)="musicPlayerService.pause()"><img
-                src="/assets/pause.svg" alt=""></button>
-        <button *ngIf="!musicPlayerService.getCurrentState()" (click)="musicPlayerService.play()"><img
-                src="/assets/play.svg" alt=""></button>
-    </div>
+        <div class="player-inner">
+                <button id="player-pause" *ngIf="musicPlayerService.getCurrentState()"
+                        (click)="musicPlayerService.pause()"><img src="/assets/pause.svg" alt=""></button>
+                <button id="player-play" *ngIf="!musicPlayerService.getCurrentState()"
+                        (click)="musicPlayerService.play()"><img src="/assets/play.svg" alt=""></button>
+        </div>
 </div>

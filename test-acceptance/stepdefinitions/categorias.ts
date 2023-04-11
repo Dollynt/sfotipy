@@ -20,9 +20,15 @@ async function checkPlaylistName(playlistName: string) {
 
 defineSupportCode(function ({ Given, When, Then }) {
 
-    Given(/^possuo login "([^\"]*)" e senha "(\d*)"$/, async (login, senha) => {
-        expect(login).to.equal(login);
-    })
+    Given(/^possuo login "([^\"]*)" e senha "([^\"]*)"$/, async (email, senha) => {
+        goTo("login");
+        const EC = protractor.ExpectedConditions;
+        const em = element(by.name("email"))
+        await browser.wait(EC.visibilityOf(em), 5000, "Element not visible");
+        await em.sendKeys(email.toString());
+        await element(by.name("password")).sendKeys(senha.toString());
+        await element(by.name("entrar")).click();
+    });
 
     Given(/^estou na página da playlist "([^\"]*)" com id "(\d*)"$/, async (playlistName, id) => {
         goTo("playlist/" + id);
@@ -34,7 +40,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         expect(await selector.isPresent()).to.be.true;
     });
 
-    Given(/^"([^\"]*)" tem a categoria "([^\"]*)"$/, async (playlist, category) => {
+    Given(/^"([^\"]*)" é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
         expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
     });
 
@@ -48,20 +54,15 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^"([^\"]*)" é uma nova categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
-        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
-    });
-
-    Given(/^possuo o login "([^\"]*)" e senha "([^\"]*)"$/, async (login, senha) => {
-        // Verificar login
-        expect(login).to.equal(login);
+        const addedElement = await element.all(by.id(`selected-cat-${category}`));
+        expect(addedElement.length).to.equal(1);
+        const removeElement = await element(by.id("selected-cat-" + category));
+        const button = await removeElement.element(by.className("close-button"));
+        await button.click();
     });
 
     Given(/^"([^\"]*)" não é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
         expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(0);
-    });
-
-    Given(/^"([^\"]*)" é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
-        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
     });
 
     When(/^seleciono "([^\"]*)" para o remover das categorias$/, async (category) => {
@@ -70,18 +71,19 @@ defineSupportCode(function ({ Given, When, Then }) {
         await button.click();
     });
 
-    Then(/^"([^\"]*)" é uma categoria de "([^\"]*)” e "([^\"]*)" não.$/, async (categoryPresent, playlistName, categoryNotPresent) => {
-        expect((await element.all(by.id(`selected-cat-${categoryPresent}`))).length).to.equal(1);
-        expect((await element.all(by.id(`selected-cat-${categoryNotPresent}`))).length).to.equal(0);
-        await checkPlaylistName(playlistName.toString());
+    Then(/^"([^\"]*)" não é mais uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
+        const removedElement = await element.all(by.id(`selected-cat-${category}`));
+        expect(removedElement.length).to.equal(0);
 
-    });
+        const button = await element(by.id("selector-cat"));
+        await button.click();
+        await button.click();
 
-    // Scenario : remover uma categoria.
-
-    Then(/^"([^\"]*)" não possui mais "([^\"]*)" como uma categoria da playlist$/, async (playlistName, category) => {
-        await checkPlaylistName(playlistName.toString());
-        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(0);
+        const EC = protractor.ExpectedConditions;
+        const categoryElement = await element(by.id("select-cat-" + category));
+        await browser.wait(EC.visibilityOf(categoryElement), 5000, "Element not visible");
+        await categoryElement.click();
+        
     });
 
     // Scenario : adicionando categoria já existente na playlist
@@ -103,9 +105,22 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     // Scenario: removendo todas as categorias de uma playlist
 
-    Then(/^"([^\"]*)" não possui nenhuma categoria$/, async (playlistName) => {
+    Then(/^"([^\"]*)" e "([^\"]*)" não são mais categorias da playlist "([^\"]*)"$/, async (cat1, cat2, playlistName) => {
+        expect((await element.all(by.id(`selected-cat-${cat1}`))).length).to.equal(0);
+        expect((await element.all(by.id(`selected-cat-${cat2}`))).length).to.equal(0);
         await checkPlaylistName(playlistName.toString());
-        expect((await element.all(by.className("category"))).length).to.equal(0);
+
+        const button = await element(by.id("selector-cat"));
+        await button.click();
+
+        const EC = protractor.ExpectedConditions;
+        const cat1Element = await element(by.id("select-cat-" + cat1));
+        await browser.wait(EC.visibilityOf(cat1Element), 5000, "Element not visible");
+        await cat1Element.click();
+
+        const cat2Element = await element(by.id("select-cat-" + cat2));
+        await browser.wait(EC.visibilityOf(cat2Element), 5000, "Element not visible");
+        await cat2Element.click();
     });
 
     // Scenario: adicionando duas categorias para a playlist

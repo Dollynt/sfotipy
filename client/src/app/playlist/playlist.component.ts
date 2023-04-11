@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 
 import { CategoryService } from '../category.service';
 import { MusicPlayerService } from '../services/music-player.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class PlaylistComponent implements OnInit {
     private musicService: MusicasService,
     private categoryService: CategoryService,
     private location: Location,
-    public musicPlayerService: MusicPlayerService) { }
+    public musicPlayerService: MusicPlayerService,
+    private titleService: Title) { }
 
 
   musicasFiltradas: string[] = [];
@@ -119,6 +121,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     const playId = this.route.snapshot.params["id"];
     this.playlistId = playId;
     this.musicas.subscribe(musicas => {
@@ -135,6 +138,7 @@ export class PlaylistComponent implements OnInit {
             .subscribe(
               as => {
                 this.selectedPlaylist = as;
+                this.titleService.setTitle(this.selectedPlaylist.name);
                 for (var i of this.selectedPlaylist.musics) {
                   this.musicService.getMusicsById(i)
                     .subscribe(

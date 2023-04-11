@@ -86,7 +86,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve verificar se o nome da playlist já existe", () => {
-        let exists = playlistService.verificarNomePlaylistExistente('Melhores Rock');
+        let exists = playlistService.verificarNomePlaylistExistente('Melhores Rock', 1);
         expect(exists).toBe(true);
     });
 

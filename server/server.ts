@@ -8,7 +8,7 @@ import fs = require('fs');
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
 import { Category } from '../common/category';
-import { Usera } from '../common/usera';
+import { Usera } from '../common/Usera'
 
 const app = express();
 const cors = require('cors');
@@ -259,7 +259,6 @@ app.post('/playlist', function (req: express.Request, res: express.Response) {
 
 app.put('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
-  console.log(playlist)
   const result = playlistService.updatePlaylist(playlist);
   if (result) {
     res.send(result);
@@ -285,15 +284,15 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
 app.get('/minhas_playlists/:id', (req, res) => {
   const ownerId = parseInt(req.params.id);
   //console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição;
-
   //const ownerId = 1
   const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });
 
-app.get('/criar_playlist/:name', (req, res) => {
+app.get('/criar_playlist/:name/:id', (req, res) => {
   const name = req.params.name;
-  const result = playlistService.verificarNomePlaylistExistente(name);
+  const id = parseInt(req.params.id)
+  const result = playlistService.verificarNomePlaylistExistente(name, id);
   res.json(result);
 });
 
@@ -341,7 +340,6 @@ app.delete('/category/:id', function (req: express.Request, res: express.Respons
     res.send({ "failure": "The category was not deleted" });
   }
 });
-
 
 app.use((err: { message: any; }, req: any, res: { json: (arg0: { error: any; }) => void; }, next: any) => res.json({ error: err.message }))
 

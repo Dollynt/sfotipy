@@ -85,7 +85,7 @@ export class CriarPlaylistComponent implements OnInit {
       alert('Nome da playlist não pode ser maior que 35 caracteres.')
       return
     }
-    this.playlistService.verificarNomePlaylistExistente(this.nome_playlist).subscribe(result => {
+    this.playlistService.verificarNomePlaylistExistente(this.nome_playlist, this.user_id).subscribe(result => {
       if (result) {
         alert('Já existe uma playlist com esse nome');
         return

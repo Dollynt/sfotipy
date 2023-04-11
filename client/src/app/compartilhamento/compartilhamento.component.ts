@@ -13,10 +13,11 @@ export class CompartilhamentoComponent {
   playlistId: number = 0;
   pageLink: string = "";
 
-  constructor(private clipboard: Clipboard, private route: ActivatedRoute, private router: Router) {};
+  constructor(private clipboard: Clipboard, private route: ActivatedRoute, private router: Router) { };
 
   copyLink() {
     this.clipboard.copy(this.pageLink);
+    alert("Link copiado para a área de transferência!");
   }
 
   ngOnInit() {

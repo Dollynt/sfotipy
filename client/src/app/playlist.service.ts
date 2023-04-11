@@ -27,8 +27,8 @@ export class PlaylistService {
       .pipe(retry(2));
   }
 
-  verificarNomePlaylistExistente(name: string): Observable<boolean> {
-    const url = `${this.appURL}/criar_playlist/${name}`;
+  verificarNomePlaylistExistente(name: string, id: number): Observable<boolean> {
+    const url = `${this.appURL}/criar_playlist/${name}/${id}`;
     return this.http.get<boolean>(url).pipe(
       map((result) => {
         return result;

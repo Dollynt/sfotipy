@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 import { CustomvalidationService } from './Validators_extras';
 
 import { Router } from '@angular/router';
-import { Usera } from '../../../../common/usera'
+import { Usera } from '../../../../common/Usera'
 
 import { UserService } from '../user.service';
 import { LoginService } from '../login.service';
@@ -25,9 +26,12 @@ export class RegisterComponent implements OnInit {
     private registerService: UserService,
     private router: Router,
     private loginService: LoginService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Cadastro");
+    
     this.redirectToHomePage();
     this.RegisterForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],

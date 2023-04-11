@@ -13,10 +13,6 @@ async function goTo(page: string) {
 
 defineSupportCode(function ({ Given, When, Then, setDefaultTimeout }) {
 
-    Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async (login, senha) => {
-        expect(login).to.equal(login);
-    });
-
     Given(/^estou na playlist "([^\"]*)" que é "([^\"]*)" com id "(\d*)"$/, async (name, availabity, id) => {
         await goTo("playlist/" + id);
         const playlist_name = await element(by.css(".playlist_name")).getText();
