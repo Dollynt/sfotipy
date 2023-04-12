@@ -33,6 +33,11 @@ async function getPlayButton(name) {
   return playButton;
 }
 
+async function logOut() {
+  await element(by.name('perfil')).click();
+  await element(by.name('sair')).click();
+}
+
 async function buttonIsPlaying(name) {
   const playButton = await getPlayButton(name);
   const classList = await playButton.getAttribute('class');
@@ -51,6 +56,15 @@ async function getIcon(name, iconName) {
 }
 
 defineSupportCode(function({Given, When, Then}) {
+  Given(
+      /^that I'm logged with the email "([^\"]*)" and password "([^\"]*)"$/,
+      async (user, passw) => {
+        await browser.get('http://localhost:4200/login');
+        await element(by.name('email')).sendKeys(user.toString());
+        await element(by.name('password')).sendKeys(passw.toString());
+        await element(by.name('entrar')).click();
+      });
+
   Given(/^I'm on the page "([^\"]*)"$/, async (name) => {
     await browser.get('http://localhost:4200/' + name.toString().toLowerCase());
     await expect(browser.getTitle()).to.eventually.equal(name.toString());
@@ -140,6 +154,7 @@ defineSupportCode(function({Given, When, Then}) {
     const playlistname = element.all(by.name('playlist-name'));
     const names = await playlistname.getText();
     expect(names).to.include(name);
+    await logOut();
   })
 
   Then(
@@ -186,6 +201,7 @@ defineSupportCode(function({Given, When, Then}) {
   Then(/^I'm still on the page "([^\"]*)"$/, async (name) => {
     await browser.get('http://localhost:4200/' + name.toString().toLowerCase());
     await expect(browser.getTitle()).to.eventually.equal(name.toString());
+    await logOut();
   });
 
   Then(/^I see the play of the playlist "([^\"]*)"$/, async (name) => {
@@ -220,5 +236,6 @@ defineSupportCode(function({Given, When, Then}) {
                              .then(text => text === name))
                 .first();
         await expect(await playlistCard.isDisplayed()).to.be.true;
+        await browser.get('http://localhost:4200/explorar');
       });
 })

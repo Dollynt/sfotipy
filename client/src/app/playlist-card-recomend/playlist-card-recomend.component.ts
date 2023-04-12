@@ -55,7 +55,7 @@ export class PlaylistCardRecomendComponent {
 
   likePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
-    this.playlistService.addFollower(playlist.id, 0);
+    this.playlistService.addFollower(playlist.id, this.userId);
 
     this.showShareMessage = false;
     this.showLikedMessage = true;
