@@ -11,8 +11,8 @@
     <div class="profile-info" *ngIf="isLogged">
         <p name="segidores">Seguidores: {{user.followers}}</p>
         <div class="profile-options">
-            <button class="prf-btn">Mudar senha</button>
-            <button class="prf-btnv">Excluir conta</button>
+            <p class="prf-btn" name="useremail">{{user.email}}</p>
+            <p class="prf-btnv">{{user.id}}</p>
             <button name="sair" class="prf-btns" (click)="logOut()">Sair</button>
         </div>
     </div>

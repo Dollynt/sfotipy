@@ -1,13 +1,63 @@
 <div class="container">
-    <div class="title" *ngFor="let music of mostAccessedMusics">Músicas em Alta na Semana</div>
+    <div class="title">Músicas em Alta na Semana</div>
     <div class="biggerBox">
         <div class="smallBox">
-            <div class="imagem">{{music.image}}</div>
+            <div><img src={{getFirstSongImage()}} alt="" class="imagem"></div>
             <div class="textContainer">
-                <div class="textOne">{{music.name}}</div>
-                <div class="textTwo">{{music.author}}</div>
+                <div class="textOne">{{getFirstSongTitle()}}</div>
+                <div class="textTwo">{{getFirstSongAuthor()}}</div>
             </div>
         </div>
+        <div class="smallBox">
+            <div><img src={{getSecondSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getSecondSongTitle()}}</div>
+                <div class="textTwo">{{getSecondSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getThirdSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getThirdSongTitle()}}</div>
+                <div class="textTwo">{{getThirdSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getFourthSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getFourthSongTitle()}}</div>
+                <div class="textTwo">{{getFourthSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getFifthSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getFifthSongTitle()}}</div>
+                <div class="textTwo">{{getFifthSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getSixthSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getSixthSongTitle()}}</div>
+                <div class="textTwo">{{getSixthSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getSeventhSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getSeventhSongTitle()}}</div>
+                <div class="textTwo">{{getSeventhSongAuthor()}}</div>
+            </div>
+        </div>
+        <div class="smallBox">
+            <div><img src={{getEighthSongImage()}} alt="" class="imagem"></div>
+            <div class="textContainer">
+                <div class="textOne">{{getEighthSongTitle()}}</div>
+                <div class="textTwo">{{getEighthSongAuthor()}}</div>
+            </div>
+        </div>
+
     </div>
 
 </div>

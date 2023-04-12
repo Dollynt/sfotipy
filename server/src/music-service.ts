@@ -20,9 +20,9 @@ export class MusicService {
     new Music(<Music>{ 'id': 15, 'name': "Lose Yourself", 'author': "Eminem", 'image': "https://upload.wikimedia.org/wikipedia/pt/d/d6/Lose_Yourself.jpg", 'link': "", 'duration': 500, 'category': 2 }),
     new Music(<Music>{ 'id': 16, 'name': "Love The Way You Lie ft. Rihanna", 'author': "Eminem", 'image': "https://upload.wikimedia.org/wikipedia/pt/c/cb/Eminem_Rihanna_Love_The_Way_You_Lie.jpg", 'link': "", 'duration': 500, 'category': 2 }),
     new Music(<Music>{ 'id': 17, 'name': "The Real Slim Shady", 'author': "Eminem", 'image': "https://i.scdn.co/image/ab67616d00001e02dbb3dd82da45b7d7f31b1b42", 'link': "", 'duration': 500, 'category': 2 }),
-    new Music(<Music>{ 'id': 18, 'name': 'Legends Never Die', 'author': 'Against the Current', 'image': 'https://i.ytimg.com/vi/r6zIGXun57U/maxresdefault.jpg', 'link': 'https://www.youtube.com/watch?v=r6zIGXun57U', 'duration': 227, 'category': 1 }),
-    new Music(<Music>{ 'id': 19, 'name': 'Phoenix', 'author': 'Cailin Russo, Chrissy Costanza', 'image': '', 'link': 'https://www.youtube.com/watch?v=eE9tSJA-7hc', 'duration': 222, 'category': 1 }),
-    new Music(<Music>{ 'id': 20, 'name': 'Rise', 'author': 'The Glitch Mob, Mako, and The Word Alive', 'image': 'https://static.wikia.nocookie.net/leagueoflegends/images/2/2b/Rise_Single_Cover.jpg/revision/latest/scale-to-width-down/1000?cb=20180913021319', 'link': 'https://www.youtube.com/watch?v=fB8TyLTD7EE', 'duration': 257, 'category': 1 }),
+    new Music(<Music>{ 'id': 18, 'name': 'Legends Never Die', 'author': 'Against the Current', 'image': 'https://cdns-images.dzcdn.net/images/cover/c5be10e75b16bd7636c6b87854bd5016/500x500.jpg', 'link': '', 'duration': 227, 'category': 1 }),
+    new Music(<Music>{ 'id': 19, 'name': 'Phoenix', 'author': 'Cailin Russo, Chrissy Costanza', 'image': 'https://i.scdn.co/image/ab67616d0000b273a91543c0ec0301cca07792dc', 'link': 'https://www.youtube.com/watch?v=eE9tSJA-7hc', 'duration': 222, 'category': 1 }),
+    new Music(<Music>{ 'id': 20, 'name': 'Rise', 'author': 'The Glitch Mob, Mako, and The Word Alive', 'image': 'https://i.scdn.co/image/ab67616d0000b273304ae5169ad8e53e261b93f2', 'link': '', 'duration': 257, 'category': 1 }),
     new Music(<Music>{ 'id': 21, 'name': 'Sweater Weather', 'author': 'The Neighbourhood', 'image': 'https://i.scdn.co/image/ab67616d0000b2738265a736a1eb838ad5a0b921', 'link': '', 'duration': 213, 'category': 1 }),
     new Music(<Music>{ 'id': 22, 'name': 'Daddy Issues', 'author': 'The Neighbourhood', 'image': 'https://i.scdn.co/image/ab67616d0000b2733066581d697fbdee4303d685', 'link': '', 'duration': 238, 'category': 1 }),
     new Music(<Music>{ 'id': 23, 'name': 'Afraid', 'author': 'The Neighbourhood', 'image': 'https://upload.wikimedia.org/wikipedia/en/1/1f/Afraid_The_Neighbourhood.png', 'link': '', 'duration': 251, 'category': 1 }),
@@ -63,6 +63,17 @@ export class MusicService {
   }
 
   getById(musicId: number): Music | undefined {
-    return this.musics.find(({ id }) => id === musicId);
+    var music = this.musics.find(({id}) => id === musicId);
+    if(!music){
+      return undefined
+    }
+    if(music?.accessSong){
+      music.accessSong++;
+    }
+    else{
+      music.accessSong = 1;
+    }
+    this.update(music);
+    return music;
   }
 }

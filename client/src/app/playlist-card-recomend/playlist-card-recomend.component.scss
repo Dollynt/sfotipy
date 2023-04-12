@@ -189,6 +189,8 @@
 
 .share-message,
 .liked-message {
+  position: absolute;
+  bottom: 145px;
   background-color: #177cbc;
   color: white;
   font-size: 14px;
@@ -197,10 +199,11 @@
   z-index: 2;
 }
 
-.liked-message {
-  position: absolute;
-  bottom: 164px;
-  }
+// .liked-message {
+//   position: absolute;
+//   bottom: 10px;
+// }
+
 button {
   background: none;
   border: none;
