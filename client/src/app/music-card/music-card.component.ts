@@ -17,6 +17,8 @@ export class MusicCardComponent {
   @Input() id!: number;
   @Input() music!: Music;
 
+  @Input() isDeletable!: boolean;
+
   category: string;
   playlistId: number = 0
   constructor(private categoryService: CategoryService, public musicPlayerService: MusicPlayerService, private route: ActivatedRoute, private playlistService: PlaylistService) {
@@ -27,8 +29,8 @@ export class MusicCardComponent {
     this.category = this.categoryService.getCategorybyId(this.music?.category)?.name || "";
     this.route.paramMap.subscribe(params => {
       this.playlistId = Number(params.get('id'));
-  })
-}
+    })
+  }
 
   playMusic() {
     if (!this.musicPlayerService.isPlaying && this.musicPlayerService.currentMusic.id == this.music.id) {
