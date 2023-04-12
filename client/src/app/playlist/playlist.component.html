@@ -23,7 +23,7 @@
           </div>
         </details>
         <br>
-        <button class="delete" (click)="deletePLaylist()">Deletar playlist</button>
+        <a class="delete" (click)="deletePLaylist()">Deletar playlist</a>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">
@@ -44,7 +44,7 @@
   </div>
 
   <div class="musicslist">
-    <app-music-card *ngFor="let m of playlistSongs" [id]="m.id" [name]="m.name" [author]="m.author"
+    <app-music-card [isDeletable]="true" *ngFor="let m of playlistSongs" [id]="m.id" [name]="m.name" [author]="m.author"
       [music]="m"></app-music-card>
   </div>
 

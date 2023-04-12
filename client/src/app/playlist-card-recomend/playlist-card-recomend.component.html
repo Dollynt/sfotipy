@@ -8,7 +8,8 @@
       <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
         id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
     </div>
-    <img class="playlist-image" name="{{playlist?.name}}" [src]="playlist?.image || '/assets/default.png'" alt="Playlist cover">
+    <img class="playlist-image" name="{{playlist?.name}}" [src]="playlist?.image || '/assets/default.png'"
+      alt="Playlist cover">
     <div class="card-body">
       <h5 name="nome" class="card-title">{{ playlist?.name }}</h5>
     </div>
