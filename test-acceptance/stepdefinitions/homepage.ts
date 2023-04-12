@@ -11,7 +11,7 @@ async function goTo(page: string) {
     await browser.driver.get('http://localhost:4200/' + page);
 }
 
-async function logIn(email : StepDefinitionParam, password : StepDefinitionParam) {
+async function logIn(email: StepDefinitionParam, password: StepDefinitionParam) {
     await browser.get('http://localhost:4200/login');
     await element(by.name("email")).sendKeys(email.toString());
     await element(by.name("password")).sendKeys(password.toString());
@@ -23,10 +23,10 @@ async function logOut() {
     await element(by.name('sair')).click();
 }
 
-async function getPlaylistName(name: StepDefinitionParam) : Promise<string>{
+async function getPlaylistName(name: StepDefinitionParam): Promise<string> {
     const playlistCard = await element.all(by.name('playlist-card'))
-      .filter(p => p.element(by.name('nome')).getText().then(text => text === name))
-      .first();
+        .filter(p => p.element(by.name('nome')).getText().then(text => text === name))
+        .first();
     return playlistCard.element(by.name('nome')).getText();
 }
 
@@ -128,7 +128,6 @@ defineSupportCode(function ({ Given, When, Then }) {
     //Scenario: Acessar perfil do usuário
     //Given eu esteja na página inicial "Sfotipy"
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
-
     //When eu clico no botão "perfil"
 
     Then(/^eu posso ver meu dados "([^\"]*)" e "([^\"]*)"$/, async (name, followers) => {
@@ -143,11 +142,8 @@ defineSupportCode(function ({ Given, When, Then }) {
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Minhas Playlists de usuário logado
     //Given eu esteja na página inicial "Sfotipy"
-
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
-
     //When eu clico no botão "playlists"
-
     //Then eu sou levado para a pagina de "Minhas Playlists"
 
     Then(/^eu posso ver uma lista com as minhas playlists "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (playlist1, playlist2, playlist3) => {
@@ -183,7 +179,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     //Then eu sou levado para a pagina de "Explorar"
-    
+
     Then(/^eu posso ver uma lista com as "([^\"]*)"$/, async (recomendacoes) => {
         const rec = await element(by.name("recomendacoes"));
         expect(await rec.getText()).to.equal(recomendacoes);
@@ -202,7 +198,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.name(perfil.toString())).click();
         await element(by.name(sair.toString())).click();
     });
- 
+
     //Then eu sou levado para a pagina de "Login"
 
     Then(/^minhas credenciais serão pedidas novamente$/, async () => {

@@ -41,9 +41,9 @@ export class HomepageComponent {
 
               this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
               this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId === this.userId);
-              this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length).splice(0,5);
-
-              //this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
+              //this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length).splice(0,4);
+              this.playlistsTrending = this.playlistsPublic.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 5);
+              
               this.playlistService.recommendPlaylists(this.playlistsUser, this.playlists).subscribe(
                 as => { this.playlistsRecommended = as; },
                 msg => { alert(msg.message); }
