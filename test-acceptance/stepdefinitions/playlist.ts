@@ -149,39 +149,3 @@ Then(/^I can see the music "([^"]*)" in the playlist page$/, async (musicName) =
   await ExpectedConditions.presenceOf(logout)
   await logout.click()
 })
-
-
-
-/*
-When('I select the playlist {string}', async function (playlistName) {
-  const playlistList = element.all(by.css('.playlist-list .playlist-item'));
-  await playlistList.filter(async function (playlistItem) {
-    const title = await playlistItem.element(by.css('.title')).getText();
-    return title === playlistName;
-  }).then(async function (filteredPlaylists) {
-    expect(await filteredPlaylists.length).toEqual(1);
-    await filteredPlaylists[0].click();
-  });
-});
-
-When('I update the playlist name as {string}', async function (newPlaylistName) {
-  const inputPlaylistName = element(by.css('#playlist-name'));
-  await inputPlaylistName.clear();
-  await inputPlaylistName.sendKeys(newPlaylistName);
-  const updateButton = element(by.css('#update-button'));
-  await updateButton.click();
-});
-
-When('I select the option {string}', async function (option) {
-  const optionButton = element(by.css(`#${option}-button`));
-  await optionButton.click();
-});
-
-When('I search for the playlist {string}', async function (playlistName) {
-  const searchInput = element(by.css('#search-input'));
-  await searchInput.sendKeys(playlistName);
-  const searchButton = element(by.css('#search-button'));
-  await searchButton.click();
-});
-*/
-
