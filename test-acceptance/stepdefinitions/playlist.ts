@@ -1,4 +1,5 @@
 const { Given, When, Then } = require('cucumber');
+import { log } from 'console';
 import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions, ElementFinder, By, Key } from 'protractor';
 const { expect } = require('chai');
 const {setDefaultTimeout} = require('cucumber');
@@ -139,10 +140,17 @@ Then(/^The "([^"]*)" playlist page is refreshed$/,async (playlistName) => {
 
 Then(/^I can see the music "([^"]*)" in the playlist page$/, async (musicName) => {
   const music =  element.all(by.css('.'+musicName));
+  const perfil = element(by.name('perfil'))
+  const logout = element(by.name('sair'))
   await browser.wait(protractor.ExpectedConditions.presenceOf(music.first()), 5000); // espera 5 segundos para o elemento estar presente
   const count = await music.count();
   expect(count).equal(1);
+  await perfil.click()
+  await ExpectedConditions.presenceOf(logout)
+  await logout.click()
 })
+
+
 
 /*
 When('I select the playlist {string}', async function (playlistName) {
