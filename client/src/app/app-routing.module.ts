@@ -19,9 +19,9 @@ const routes: Routes = [
   { path: 'playlistsrecomendadas', component: PlaylistRecomendadasComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: RegisterComponent },
-  { path: 'playlistemalta', component: PlaylistEmAltaComponent},
-  { path: 'musicasemalta', component: MusicasEmAltaComponent},
-  { path: 'artistasemalta', component: ArtistasEmAltaComponent}
+  // { path: 'playlistemalta', component: PlaylistEmAltaComponent},
+  // { path: 'musicasemalta', component: MusicasEmAltaComponent},
+  // { path: 'artistasemalta', component: ArtistasEmAltaComponent}
 
 ];
 
