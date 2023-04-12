@@ -24,11 +24,11 @@
 .circulo {
     width: 100px;
     height: 100px;
-    background: #9B9B9B;
     border-radius: 50%;
 }
-
-.container {
+.container{
+    padding-top: 146px;
+    padding-left: 7px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

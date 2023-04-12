@@ -27,6 +27,9 @@ export class UserPlaylistsComponent implements OnInit {
   likedPlaylists: Playlist[] = [];
   playlists: Playlist[] = [];
 
+
+
+
   redirectplaylist(id: number) {
     this.router.navigate(['/playlist/', id]);
   }
@@ -47,7 +50,9 @@ export class UserPlaylistsComponent implements OnInit {
           this.userService.getUserId().subscribe(
             as => { this.userId = as; },
             msg => { alert(msg.message); }
+
           );
+          console.log(this.userId);
           this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
           this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
           this.numPlaylists = this.playlistsUser.length

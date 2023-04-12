@@ -9,21 +9,22 @@ describe('PlaylistService', () => {
     var length: number;
     var playlist: Playlist;
 
-    var newPlaylist = new Playlist(<Playlist>{
-        'id': 0,
-        'name': 'Piores Rock',
-        'categories': [2],
-        'musics': [2],
-        'image':
-            'https://assets.dragoart.com/images/140589_502/how-to-draw-strange-music-logo-strange-music-step-5_5e4cb46a6013c9.70891777_74088_5_3.gif',
-        'link': '',
-        'owner': 'geraldo',
-        'followers': [],
-        'availability': 'public'
-    });
+    var newPlaylist = new Playlist(<Playlist><unknown>{
+        "id": 0,
+        "name": "Piores Rock",
+        "categories": [2],
+        "musics": [18, 19, 20],
+        "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
+        "link": "",
+        "owner": "geraldo",
+        "followers": ['a', 'b'],
+        "availability": "public",
+        "accessPlaylits": 9,
+        "ownerId": 123
+      })
 
     var newUser = new User();
-    newUser.id = 1;
+    newUser.id = 123;
     newUser.name = 'geraldo';
     newUser.email = 'email@email.com';
     newUser.password = '123456';
@@ -55,8 +56,8 @@ describe('PlaylistService', () => {
         playlistService.delete(id);
     }
 
-    it("ter inicialmente 10 playlists cadastradas", () => {
-        expect(playlistService.playlists.length).toEqual(10);
+    it("ter inicialmente 13 playlists cadastradas", () => {
+        expect(playlistService.playlists.length).toEqual(13);
     });
 
     it("deve cadastrar uma nova playlist", () => {
@@ -74,7 +75,7 @@ describe('PlaylistService', () => {
     it("deve retornar as playlists de um usuário", () => {
         add(newPlaylist);
 
-        let playlists = playlistService.getUserPlaylists(newUser.name);
+        let playlists = playlistService.getUserPlaylists(newUser.id);
         length = playlistService.playlists.length;
         playlist = playlistService.playlists[length - 1];
         expect(playlists.length).toBe(1);
@@ -86,8 +87,15 @@ describe('PlaylistService', () => {
     });
 
     it("deve verificar se o nome da playlist já existe", () => {
-        let exists = playlistService.verificarNomePlaylistExistente('Melhores Rock', 1);
+        add(newPlaylist);
+
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
+
+        let exists = playlistService.verificarNomePlaylistExistente('Piores Rock', 123);
         expect(exists).toBe(true);
+
+        deletePlaylist(length - 1);
     });
 
     it("deve retornar todas as playlists", () => {

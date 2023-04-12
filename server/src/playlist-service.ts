@@ -145,7 +145,7 @@ export class PlaylistService {
       "name": "Pop Mix",
       "categories": [2, 1],
       "musics": [21, 22, 23, 24],
-      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "image": "https://marketplace.canva.com/EAEdft48JIs/1/0/1600w/canva-orange-skyline-tumblr-aesthetic-love-songs-playlist-cover-mCNRRGaWFgU.jpg",
       "link": "",
       "owner": "VictorTst",
       "followers": ['a', 'b', 'd'],
@@ -158,7 +158,7 @@ export class PlaylistService {
       "name": "Electric Vibe",
       "categories": [3, 1],
       "musics": [21, 22, 23, 24],
-      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "image": "https://cdn.myportfolio.com/1fabf4ed77f805d754b14c5b7b6b7fb1/7238d42acc58c1c5f58e6ca6768bfb2352a0aa7a21016eb7d6f0dc293190f898f05ee0a79aeb4322_rw_1200.jpg?h=d73e87a9258dd65515c8148ff3930b6c",
       "link": "",
       "owner": "VictorTst",
       "followers": ['a', 'b', 'd'],
@@ -171,7 +171,7 @@ export class PlaylistService {
       "name": "Study lofi",
       "categories": [6],
       "musics": [],
-      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "image": "https://marketplace.canva.com/EAFIKP1l1AU/1/0/1600w/canva-blue-purple-cute-bright-lofi-study-playlist-cover-U8HtmB7MB00.jpg",
       "link": "",
       "owner": "VictorTst",
       "followers": ['a', 'b', 'd'],
@@ -185,6 +185,7 @@ export class PlaylistService {
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;
+
 
   addPlaylist(playlist: Playlist): Playlist[] {
     playlist.id = this.idCount;
@@ -262,6 +263,20 @@ export class PlaylistService {
     } else {
       return false;
     }
+  }
+
+  deleteMusic(playlistId:number, musicId:number) {
+    const playlist = this.playlists.find(c => c.id == playlistId);
+    if (playlist){
+      const index = playlist.musics.findIndex(c => c === musicId);
+      if (index >= 0) {
+        playlist.musics.splice(index, 1)
+        return true
+      } else {
+        return false
+      }
+    } 
+    return false
   }
 
   addNewCategory(playlistId: number, category: number): Playlist | null {

@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Category } from '../../../../common/category';
 import { MusicasService } from '../musicas.service';
@@ -30,7 +31,9 @@ export class PlaylistComponent implements OnInit {
     private categoryService: CategoryService,
     private location: Location,
     public musicPlayerService: MusicPlayerService,
-    private titleService: Title) { }
+    private titleService: Title,
+    private router: Router) { }
+
 
 
   musicasFiltradas: string[] = [];
@@ -81,12 +84,16 @@ export class PlaylistComponent implements OnInit {
   adicionarMusica(musica: string) {
     this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
       const musicaEncontrada = musicasArray.find(m => m.name === musica);
-
       if (musicaEncontrada) {
+        const musicaInArray = this.musicas_add.value.find(m => m.id === musicaEncontrada.id)
+        if (musicaInArray) {
+          alert('Música já adicionada')
+          return
+        }
+
         this.musicas_add.next([...this.musicas_add.value, musicaEncontrada]);
       }
     })
-
   }
 
   updateMusicas() {
@@ -102,9 +109,17 @@ export class PlaylistComponent implements OnInit {
 
     const update = this.playlistService.updatePlaylistMusics(playlist).subscribe()
     if (update) {
-      alert('Músicas atualizadas com sucesso!')
+      //alert('Músicas atualizadas com sucesso!')
       window.location.reload();
     }
+  }
+
+  deletePLaylist() {
+    const deletar = this.playlistService.deletarPlaylist(this.playlistId).subscribe()
+      if (deletar) {
+        alert('Playlist deletada com sucesso')
+        this.router.navigate(['/minhas_playlists']);
+      }
   }
 
   filtrarMusicas(event: KeyboardEvent) {

@@ -31,7 +31,7 @@
             <div class="musicaslista">
                 <app-music-card
                     *ngFor="let m of musics | musicsFilter: filterText: getCategoriesId()| slice:0:(showAllMusic ? undefined : 4)"
-                    [id]="m.id" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
+                    [id]="m.id" [isDeletable]="false" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
             </div>
             <div class="see-more-music" (click)="showAllMusic = !showAllMusic">
                 {{ showAllMusic ? 'Ver menos músicas' : 'Ver mais músicas' }}

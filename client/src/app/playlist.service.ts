@@ -41,6 +41,16 @@ export class PlaylistService {
       .pipe(retry(2))
   }
 
+  deletarPlaylist(playlistId: number) {
+    return this.http.delete(`${this.appURL}/playlist/${playlistId}`, this.httpOptions)
+      .pipe(retry(2))
+  }
+
+  deleteMusic(musicId:number, playlistId:number){
+    return this.http.delete(`${this.appURL}/playlist/${playlistId}/${musicId}`, this.httpOptions)
+      .pipe(retry(2))
+  }
+
   getUserPlaylists(ownerId: any): Observable<Playlist[]> {
     const url = `${this.appURL}/minhas_playlists/${ownerId}`;
     return this.http.get<any[]>(url).pipe(

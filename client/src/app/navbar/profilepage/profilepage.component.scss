@@ -37,14 +37,14 @@
     align-items: start;
     justify-content: space-between;
 
-    height: 330px;
+    height: 200px;
     padding-left: 40px;
 
     font-size: 25px;
     font-weight: bold;
 }
 
-.prf-btn, .prf-btnv, .prf-btng, .prf-btns{
+.prf-btnv, .prf-btng, .prf-btns{
     display: block;
 
     background: none;
@@ -70,6 +70,6 @@
     margin-top: 50px;
 }
 
-.prf-btn:hover, .prf-btnv:hover, .prf-btng:hover, .prf-btns:hover{
+.prf-btnv:hover, .prf-btng:hover, .prf-btns:hover{
     filter: brightness(85%)
 }

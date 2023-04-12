@@ -72,6 +72,13 @@ h1 {
   margin-bottom: 0;
 }
 
+.delete {
+  background-color: #6E7C88;
+  color: red;
+  cursor: pointer;
+  font-size: 18px;
+}
+
 .header {
   border-radius: 15px;
   min-height: 30vh;

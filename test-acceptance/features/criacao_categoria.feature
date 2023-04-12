@@ -11,6 +11,7 @@ Feature: Criação de Categorias
         When seleciono a opção de adicionar uma nova categoria
         And seleciono "ROCK" como uma nova categoria
         Then "ROCK" é uma nova categoria da playlist "Melhores Pop"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
 
     Scenario: mudança de categoria de playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -23,6 +24,7 @@ Feature: Criação de Categorias
         And seleciono "INDIE" como uma nova categoria
         Then "INDIE" é uma nova categoria da playlist "Melhores Indie"
         And "ELECTRONIC" não é mais uma categoria da playlist "Melhores Indie"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
     
     Scenario: remover uma categoria de uma playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -32,6 +34,7 @@ Feature: Criação de Categorias
         When seleciono a opção de adicionar uma nova categoria
         And seleciono "ROCK" para o remover das categorias
         Then "ROCK" não é mais uma categoria da playlist "Para Você"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
 
     Scenario: tentando adicionando categoria já existente na playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -41,6 +44,7 @@ Feature: Criação de Categorias
         When seleciono a opção de adicionar uma nova categoria
         Then não consigo ver "HIP-HOP" como uma categoria para ser selecionada
         And "Para Dormir" continua tendo somente uma categoria, que é "HIP-HOP"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
 
     Scenario: mais de duas categorias para playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -50,6 +54,7 @@ Feature: Criação de Categorias
         When não consigo encontrar a opção de adicionar uma nova categoria
         Then "ROCK" é uma categoria da playlist "Melhores Rock"
         And "HIP-HOP" é uma categoria da playlist "Melhores Rock"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
 
     Scenario: removendo todas as categorias de uma playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -59,6 +64,7 @@ Feature: Criação de Categorias
         When seleciono "ELECTRONIC" para o remover das categorias
         And seleciono "KPOP" para o remover das categorias
         Then "ELECTRONIC" e "KPOP" não são mais categorias da playlist "Rocking with Imagine Dragons"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"
     
     Scenario: adicionando duas categorias para a playlist
         Given possuo login "jsa2@cin.ufpe.br" e senha "senha123"
@@ -69,3 +75,4 @@ Feature: Criação de Categorias
         And seleciono "KPOP" como uma nova categoria
         Then "ELECTRONIC" é uma nova categoria da playlist "Eminem's Greatest Hits"
         And "KPOP" é uma nova categoria da playlist "Eminem's Greatest Hits"
+        And não estou mais logado com login "jsa2@cin.ufpe.br" e senha "senha123"

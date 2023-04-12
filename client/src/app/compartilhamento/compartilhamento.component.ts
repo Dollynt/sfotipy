@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard'
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-compartilhamento',
@@ -13,7 +13,7 @@ export class CompartilhamentoComponent {
   playlistId: number = 0;
   pageLink: string = "";
 
-  constructor(private clipboard: Clipboard, private route: ActivatedRoute, private router: Router) { };
+  constructor(private clipboard: Clipboard, private route: ActivatedRoute) { };
 
   copyLink() {
     this.clipboard.copy(this.pageLink);

@@ -1,7 +1,8 @@
-.container {
-    width: 1312px;
+.container{
+    margin:0;
+    padding-top: 36px;
+    width: 100%;
     height: 430px;
-    background-color: aqua;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -29,7 +30,6 @@
 .imagem {
     height: 70px;
     width: 65px;
-    background: #86929B;
     border-radius: 8px;
 }
 
@@ -46,7 +46,7 @@
 
 .textOne {
     height: 34px;
-    width: 222px;
+    width: 380px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

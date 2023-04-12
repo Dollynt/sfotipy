@@ -1,20 +1,15 @@
 import { defineSupportCode } from 'cucumber';
-import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions } from 'protractor';
+import { browser, element, by, protractor, ExpectedConditions } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 async function goTo(page: string) {
     await browser.driver.get(`http://localhost:4200/${page}`);
 }
 
-async function checkPlaylistName(playlistName: string) {
-    const EC = protractor.ExpectedConditions;
+async function checkPlaylistName(playlistName: string) {    
     const playlist = await element(by.className("playlist_name"));
-    await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
+    await browser.wait(ExpectedConditions.visibilityOf(playlist), 5000, "Element not visible");
     expect(await playlist.getText()).to.equal(playlistName);
 }
 
@@ -22,9 +17,8 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Given(/^possuo login "([^\"]*)" e senha "([^\"]*)"$/, async (email, senha) => {
         goTo("login");
-        const EC = protractor.ExpectedConditions;
         const em = element(by.name("email"))
-        await browser.wait(EC.visibilityOf(em), 5000, "Element not visible");
+        await browser.wait(ExpectedConditions.visibilityOf(em), 5000, "Element not visible");
         await em.sendKeys(email.toString());
         await element(by.name("password")).sendKeys(senha.toString());
         await element(by.name("entrar")).click();
@@ -79,11 +73,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         await button.click();
         await button.click();
 
-        const EC = protractor.ExpectedConditions;
         const categoryElement = await element(by.id("select-cat-" + category));
-        await browser.wait(EC.visibilityOf(categoryElement), 5000, "Element not visible");
+        await browser.wait(ExpectedConditions.visibilityOf(categoryElement), 5000, "Element not visible");
         await categoryElement.click();
-        
     });
 
     // Scenario : adicionando categoria já existente na playlist
@@ -113,13 +105,11 @@ defineSupportCode(function ({ Given, When, Then }) {
         const button = await element(by.id("selector-cat"));
         await button.click();
 
-        const EC = protractor.ExpectedConditions;
         const cat1Element = await element(by.id("select-cat-" + cat1));
-        await browser.wait(EC.visibilityOf(cat1Element), 5000, "Element not visible");
+        await browser.wait(ExpectedConditions.visibilityOf(cat1Element), 5000, "Element not visible");
         await cat1Element.click();
-
         const cat2Element = await element(by.id("select-cat-" + cat2));
-        await browser.wait(EC.visibilityOf(cat2Element), 5000, "Element not visible");
+        await browser.wait(ExpectedConditions.visibilityOf(cat2Element), 5000, "Element not visible");
         await cat2Element.click();
     });
 
@@ -129,5 +119,11 @@ defineSupportCode(function ({ Given, When, Then }) {
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
 
+    Then(/^não estou mais logado com login "([^\"]*)" e senha "([^\"]*)"$/, async (login, passw) => {
+        const profile = await element(by.name('perfil'));
+        await browser.wait(ExpectedConditions.visibilityOf(profile), 5000, "Element not visible");
+        await profile.click();
+        await element(by.name('sair')).click();
+    });
 
 });

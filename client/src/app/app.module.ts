@@ -85,6 +85,14 @@ import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.componen
         component: PlaylistEmAltaComponent
       },
       {
+        path: 'em-alta',
+        component: MusicasEmAltaComponent
+      },
+      {
+        path: 'em-alta',
+        component: ArtistasEmAltaComponent
+      },
+      {
         path: 'categorias/:id',
         component: CriacaoCategoriasComponent
       }

@@ -242,6 +242,17 @@ app.delete('/playlist/:id', function (req, res) {
   }
 });
 
+app.delete('/playlist/:playlistId/:musicId', function (req, res) {
+  const playlistId: number = Number(req.params.playlistId);
+  const musicId:number = Number(req.params.musicId)
+  const deletar = playlistService.deleteMusic(playlistId,musicId)
+  if (deletar) {
+    res.status(200).send({ message: `Music ${musicId} deleted` });
+  } else {
+    res.status(404).send({ message: `Music ${musicId} could not be deleted` });
+  }
+})
+
 app.post('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
   try {
@@ -295,6 +306,16 @@ app.get('/criar_playlist/:name/:id', (req, res) => {
   const result = playlistService.verificarNomePlaylistExistente(name, id);
   res.json(result);
 });
+
+/*app.delete('/playlist/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const result = playlistService.deletarPlaylist(id)
+  if (result) {
+    res.send({ "success": "Playlist deleted with success" });
+  } else {
+    res.send({ "failure": "Error deleting the playlist" });
+  }
+})*/
 
 // ROTAS DE CATEGORIAS
 
