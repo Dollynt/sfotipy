@@ -27,7 +27,7 @@ export class MusicCardComponent {
 
   ngOnInit() {
     this.category = this.categoryService.getCategorybyId(this.music?.category)?.name || "";
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap?.subscribe(params => {
       this.playlistId = Number(params.get('id'));
     })
   }
