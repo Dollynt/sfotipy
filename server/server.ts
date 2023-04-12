@@ -38,7 +38,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-//ROTAS DE LOGIN
+//ROTAS DE LOGIN E CADASTRO
 
 const multipartMiddleware = multipart({ uploadDir: './usuarios' });
 
