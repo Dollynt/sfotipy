@@ -143,6 +143,16 @@ body {
     flex-direction: column;
 }
 
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #86929B;
+    border-radius: 32px;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
 .titulo-cadastro {
     font-family: 'Iceland', sans-serif;
     font-size: 64px;
@@ -167,7 +177,6 @@ body {
     border-top-right-radius: 32px;
     border-top-left-radius: 32px;
     align-items: center;
-    margin-bottom: 6rem;
 }
 
 .input-box {
@@ -295,8 +304,6 @@ input::placeholder {
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
     vertical-align: center;
-    position: absolute;
-    bottom: 11rem;
 }
 
 .tela-redirec div {

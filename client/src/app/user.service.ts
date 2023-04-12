@@ -13,7 +13,7 @@ export class UserService implements OnInit {
     appURL = 'http://localhost:3000';
     private userId = new BehaviorSubject<number>(
         JSON.parse(localStorage.getItem('currentUser') || '{}').id || 0
-    )
+    );
     private lastId = 0;
 
     private httpOptions = {
