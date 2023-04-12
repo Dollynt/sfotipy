@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistCardRecomendComponent } from './playlist-card-recomend.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PlaylistCardRecomendComponent', () => {
   let component: PlaylistCardRecomendComponent;
@@ -8,9 +9,10 @@ describe('PlaylistCardRecomendComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaylistCardRecomendComponent ]
+      imports: [HttpClientModule],
+      declarations: [PlaylistCardRecomendComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PlaylistCardRecomendComponent);
     component = fixture.componentInstance;

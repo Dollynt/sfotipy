@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 import { CustomvalidationService } from './Validators_extras';
 
@@ -18,7 +19,6 @@ export class RegisterComponent implements OnInit {
 
   RegisterForm!: FormGroup;
   submitted!: false;
-  userService: any;
 
   constructor(
     private fb: FormBuilder,
@@ -26,9 +26,12 @@ export class RegisterComponent implements OnInit {
     private registerService: UserService,
     private router: Router,
     private loginService: LoginService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Cadastro");
+    
     this.redirectToHomePage();
     this.RegisterForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,6 +51,13 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['']); // Redireciona o usuário para a tela principal caso ele esteja logado
       }
     });
+  }
+
+  checkToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.loginService.updateLoginStatus(true);
+    }
   }
 
   get registerFormControl() {
@@ -72,7 +82,7 @@ export class RegisterComponent implements OnInit {
     let data = this.RegisterForm.value;
 
 
-    if (this.RegisterForm.valid) {
+    if (this.RegisterForm.valid) { // Cria o componente do user para enviar ao servidor
       data = new Usera({
         name: data.nome,
         email: String(data.email).toLowerCase(),
@@ -85,9 +95,14 @@ export class RegisterComponent implements OnInit {
             this.email.setErrors({ 'emailExists': true });
           } else {
             this.registerService.addUser(data).subscribe(
-              dataServer => {
-                this.userService.setUserId(dataServer.id);
-                console.log(dataServer.id);
+              ({ files, token }) => {
+                console.log(files);
+                console.log(token);
+                localStorage.setItem('currentUser', JSON.stringify({ email: files.email, token: token, id: files.id }));; // Armazenando o token no localStorage do navegador
+                if (files && files.id !== undefined) {
+                  const userId = files.id;
+                  this.registerService.setUserId(userId);
+                }
                 this.loginService.updateLoginStatus(true);
                 this.router.navigate(['']);
               }

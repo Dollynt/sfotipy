@@ -1,4 +1,4 @@
-<div class="card-container" name="music-container" id="music-{{name}}">
+<div class="card-container" name="music-container" id="music-{{name}}" class="{{name}}">
     <div class="overlay">
         <button *ngIf="!isPausable()" class="control-btn" name="play-music" id="play-{{name}}" (click)="playMusic()">
             <img src="/assets/play.svg" alt="">
@@ -7,9 +7,10 @@
             <img src="/assets/pause.svg" alt="">
         </button>
     </div>
-    <img class="cover" src="{{music.image}}" alt="">
+    <img class="cover" src="{{music?.image}}" alt="">
     <div>
         <h2 class="name" name="nome">{{name}}</h2>
         <h3>{{author}} | <span name="music-category">{{category}}</span></h3>
+        <button class="deleteMusic" (click)="deletarMusic()">delete music</button>
     </div>
 </div>

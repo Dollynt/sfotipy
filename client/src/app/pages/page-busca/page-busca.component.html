@@ -45,9 +45,14 @@
                     *ngIf="!(playlists | playlistsFilter: filterText: getCategoriesId())?.length">
                     <p>Nenhum resultado encontrado.</p>
                 </div>
-                <app-playlist-card-recomend *ngFor="let p of playlists | playlistsFilter: filterText: getCategoriesId()"
+                <app-playlist-card-recomend
+                    *ngFor="let p of playlists | playlistsFilter: filterText: getCategoriesId() | slice:0:(showAllPlaylist ? undefined : 4)"
                     [playlist]="p"></app-playlist-card-recomend>
             </div>
+            <div class="see-more-playlist" (click)="showAllPlaylist = !showAllPlaylist">
+                {{ showAllPlaylist ? 'Ver menos playlists' : 'Ver mais playlists' }}
+            </div>
         </div>
+        <hr>
     </div>
 </section>

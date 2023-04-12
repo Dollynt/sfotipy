@@ -2,8 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 import { User } from '../../../common/user';
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Usera } from '../../../common/Usera'
 
 @Injectable({
@@ -11,8 +10,10 @@ import { Usera } from '../../../common/Usera'
 })
 export class UserService implements OnInit {
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private appURL = 'http://localhost:3000';
-    private userId = new BehaviorSubject<number>(0);
+    appURL = 'http://localhost:3000';
+    private userId = new BehaviorSubject<number>(
+      JSON.parse(localStorage.getItem('currentUser') || '{}').id || 0
+    );
     private lastId = 0;
 
     private httpOptions = {
@@ -54,9 +55,14 @@ export class UserService implements OnInit {
         );
     }
 
-    addUser(user: Usera) {
+    addUser(user: Usera): Observable<{ files: Usera, token: string }> {
         user.id = this.lastId + 1;
-        return this.http.post<Usera>(this.appURL + "/users", user);
+        return this.http.post<{ files: any, token: string }>(`${this.appURL}/users`, user).pipe(map(response => {
+            if (response && response.token) {
+                localStorage.setItem('currentUser', JSON.stringify({ email: response.files.email, token: response.token, id: response.files.id }));
+            }
+            return response;
+        }));
     }
 
     emailExists(email: string): Observable<boolean> {

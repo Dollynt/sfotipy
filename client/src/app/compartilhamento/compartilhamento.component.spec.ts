@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CompartilhamentoComponent } from './compartilhamento.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('CompartilhamentoComponent', () => {
   let component: CompartilhamentoComponent;
@@ -8,9 +9,22 @@ describe('CompartilhamentoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompartilhamentoComponent ]
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              params: {
+                id: '1'
+              }
+            }
+          }
+        }
+      ],
+      declarations: [CompartilhamentoComponent]
+
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CompartilhamentoComponent);
     component = fixture.componentInstance;

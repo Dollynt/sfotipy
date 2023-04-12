@@ -1,13 +1,13 @@
 <nav>
-    <button class="profile" name="profile" (click)="showProfile()" *ngIf="isLogged"></button>
-    <button class="login" routerLink="/login" *ngIf="!isLogged">Entrar</button>
+    <button class="profile" name="perfil" (click)="showProfile()" *ngIf="isLogged"></button>
+    <button class="login" name="login" routerLink="/login" *ngIf="!isLogged">Entrar</button>
     <div class="container">
         <div class="row">
             <a routerLink="/explorar">Explorar</a>
             <a routerLink="/busca">Busca</a>
             <a name="home" routerLink="/"><img src="../../assets/logo.png" alt="" srcset=""></a>
             <a routerLink="/em-alta">Em alta</a>
-            <a name="playlists" routerLink="/minhas_playlists" *ngIf="isLogged">Playlists</a>
+            <a name="playlists" class="playlists" routerLink="/minhas_playlists" *ngIf="isLogged">Playlists</a>
             <a name="playlists" routerLink="/cadastro" *ngIf="!isLogged">Playlists</a>
         </div>
     </div>

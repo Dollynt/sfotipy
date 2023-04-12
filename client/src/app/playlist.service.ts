@@ -27,8 +27,8 @@ export class PlaylistService {
       .pipe(retry(2));
   }
 
-  verificarNomePlaylistExistente(name: string): Observable<boolean> {
-    const url = `${this.appURL}/criar_playlist/${name}`;
+  verificarNomePlaylistExistente(name: string, id: number): Observable<boolean> {
+    const url = `${this.appURL}/criar_playlist/${name}/${id}`;
     return this.http.get<boolean>(url).pipe(
       map((result) => {
         return result;
@@ -38,6 +38,16 @@ export class PlaylistService {
 
   updatePlaylistMusics(playlist: Playlist) {
     return this.http.put(`${this.appURL}/playlist`, playlist, this.httpOptions)
+      .pipe(retry(2))
+  }
+
+  deletarPlaylist(playlistId: number) {
+    return this.http.delete(`${this.appURL}/playlist/${playlistId}`, this.httpOptions)
+      .pipe(retry(2))
+  }
+
+  deleteMusic(musicId:number, playlistId:number){
+    return this.http.delete(`${this.appURL}/playlist/${playlistId}/${musicId}`, this.httpOptions)
       .pipe(retry(2))
   }
 

@@ -20,7 +20,7 @@
 
       <div class="popup" [hidden]="!exibirPopup">
         <ul class="opcoes_musica">
-          <li *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</li>
+          <li *ngFor="let musica of musicasFiltradas" class="{{musica}}" (click)="adicionarMusica(musica)">{{musica}}</li>
         </ul>
       </div>
     </div>

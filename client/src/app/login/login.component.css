@@ -148,6 +148,7 @@ body {
     font-size: 72px;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    margin-right: 2rem;
 }
 
 .titulo-login h1 {
@@ -157,13 +158,14 @@ body {
 }
 
 .tela-login {
-    width: 640px;
-    height: 620px;
+    width: 620px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     background: #86929B;
     border-radius: 32px;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .input-group {
@@ -174,6 +176,7 @@ body {
 .input-box {
     width: 500px;
     display: block;
+    margin-top: 0.5rem;
 }
 
 .input-box input {
@@ -194,21 +197,6 @@ body {
     vertical-align: center;
     padding-left: 15%;
 }
-
-/*
-TENTANDO FAZER O ICONE MUDAR
-.input-box:hover #senha-i {
-    background: url(../../assets/senha_branco.svg) no-repeat center center;
-    background-size: 3rem;
-    transition: 0.5;
-}
-
-.input-box:hover #email-i,
-.input-box:focus #email-i {
-    background: url(../../assets/email_branco.svg) no-repeat center center;
-    background-size: 3rem;
-}
-*/
 
 .input-box input:focus,
 .input-box input:hover {
@@ -246,30 +234,15 @@ input::placeholder {
     color: rgba(255, 255, 255, 0.6)
 }
 
-
-/*.esqueceu-senha {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: #E1E1E1;
-    display: inline-block;
-    margin-left: 63.5%;
-}
-
-.esqueceu-senha:hover {
-    font-size: 20px;
-    margin-left: 60%;
-    padding-bottom: 1%;
-}*/
-
 .entrar-botao button {
     background: #1A7FC1;
     border-radius: 16px;
     width: 100%;
     height: 4rem;
-    margin-top: 1rem;
     border: none;
+    margin-top: 1rem;
     cursor: pointer;
+    margin-left: 4px;
 }
 
 .entrar-botao button:hover {
@@ -298,7 +271,7 @@ input::placeholder {
 .p-cadastro {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .cadastro {
@@ -307,7 +280,6 @@ input::placeholder {
     font-size: 40px;
     color: #E1E1E1;
     text-decoration: none;
-    margin-top: 2px;
 }
 
 .cadastro:hover {
@@ -323,8 +295,8 @@ input::placeholder {
 }
 
 .validation-error .div-fantastica img {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
     padding-right: 0.5rem;
     padding-left: 0.2rem;
 }

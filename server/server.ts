@@ -13,6 +13,7 @@ import { Usera } from '../common/Usera'
 const app = express();
 const cors = require('cors');
 const multipart = require('connect-multiparty')
+const jwt = require('jsonwebtoken');
 
 var musicService: MusicService = new MusicService();
 var playlistService = new PlaylistService();
@@ -37,7 +38,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// ROTAS DE LOGIN //
+//ROTAS DE LOGIN
 
 const multipartMiddleware = multipart({ uploadDir: './usuarios' });
 
@@ -66,7 +67,8 @@ app.post('/users', multipartMiddleware, (req, res) => { //Cadastro
         res.status(500).json({ error: 'Failed to save user data.' });
       } else {
         delete files.password;
-        res.json(files);
+        const token = jwt.sign({ id: files.id }, 'chave-secreta', { expiresIn: '1h' });
+        res.json({ files, token });
       }
     });
   });
@@ -83,11 +85,14 @@ app.post('/login', (req, res) => { // Login
   const user = users.find((u: Usera) => u.email === email && u.password === password);
 
   if (user) {
-    res.json({ success: true, id: user.id }); // Retorna uma mensagem de sucesso e o id do usuário logado
+    const token = jwt.sign({ id: user.id }, 'chave-secreta', { expiresIn: '1h' }); // Gera um token JWT com a ID do usuário
+    res.json({ success: true, id: user.id, token: token }); // Retorna uma mensagem de sucesso, o ID do usuário logado e o token JWT
   } else {
-    res.json({ success: false }); //Retorna uma mensagem de false porque não achou o usuário no banco de dados
+    res.json({ success: false }); // Retorna uma mensagem de erro porque não achou o usuário no banco de dados
   }
 });
+
+//ROTAS DE BUSCAS E VERIFICAÇÕES
 
 app.get('/users', (req, res) => { // Usuarios aparecendo no localhost:3000/users
   const filePath = './usuarios/user.json';
@@ -237,6 +242,17 @@ app.delete('/playlist/:id', function (req, res) {
   }
 });
 
+app.delete('/playlist/:playlistId/:musicId', function (req, res) {
+  const playlistId: number = Number(req.params.playlistId);
+  const musicId:number = Number(req.params.musicId)
+  const deletar = playlistService.deleteMusic(playlistId,musicId)
+  if (deletar) {
+    res.status(200).send({ message: `Music ${musicId} deleted` });
+  } else {
+    res.status(404).send({ message: `Music ${musicId} could not be deleted` });
+  }
+})
+
 app.post('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
   try {
@@ -254,7 +270,6 @@ app.post('/playlist', function (req: express.Request, res: express.Response) {
 
 app.put('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
-  console.log(playlist)
   const result = playlistService.updatePlaylist(playlist);
   if (result) {
     res.send(result);
@@ -285,11 +300,22 @@ app.get('/minhas_playlists/:id', (req, res) => {
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });
 
-app.get('/criar_playlist/:name', (req, res) => {
+app.get('/criar_playlist/:name/:id', (req, res) => {
   const name = req.params.name;
-  const result = playlistService.verificarNomePlaylistExistente(name);
+  const id = parseInt(req.params.id)
+  const result = playlistService.verificarNomePlaylistExistente(name, id);
   res.json(result);
 });
+
+/*app.delete('/playlist/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const result = playlistService.deletarPlaylist(id)
+  if (result) {
+    res.send({ "success": "Playlist deleted with success" });
+  } else {
+    res.send({ "failure": "Error deleting the playlist" });
+  }
+})*/
 
 // ROTAS DE CATEGORIAS
 

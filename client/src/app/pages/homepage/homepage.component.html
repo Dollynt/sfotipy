@@ -1,38 +1,38 @@
 <div class="homepage">
     <div class="plsts-em-alta">
-        <h1 name="plsts-em-alta">Playlists em alta</h1>
+        <h1 name="plsts-em-alta">Playlists em Alta</h1>
 
         <div class="plsts-ea-lst">
-            <a class="plst-ea-4" [routerLink]="'/playlist/' + playlistsTrending[3].id.toString()">
-                <img class="plst-ea-img" [src]="playlistsTrending[3].image">
+            <a class="plst-ea-4" [routerLink]="'/playlist/' + playlistsTrending[3]?.id?.toString()">
+                <img class="plst-ea-img" [src]="playlistsTrending[3]?.image">
                 <div class="podium">4º</div>
             </a>
-            <a class="plst-ea-2" [routerLink]="'/playlist/' + playlistsTrending[1].id.toString()">
-                <img class="plst-ea-img" [src]="playlistsTrending[1].image">
+            <a class="plst-ea-2" [routerLink]="'/playlist/' + playlistsTrending[1]?.id?.toString()">
+                <img class="plst-ea-img" [src]="playlistsTrending[1]?.image">
                 <div class="podium">2º</div>
             </a>
-            <a class="plst-ea-1" [routerLink]="'/playlist/' + playlistsTrending[0].id.toString()">
-                <img class="plst-ea-img" [src]="playlistsTrending[0].image">
+            <a class="plst-ea-1" [routerLink]="'/playlist/' + playlistsTrending[0]?.id?.toString()">
+                <img class="plst-ea-img" [src]="playlistsTrending[0]?.image">
                 <div class="podium">1º</div>
             </a>
-            <a class="plst-ea-3" [routerLink]="'/playlist/' + playlistsTrending[2].id.toString()">
-                <img class="plst-ea-img" [src]="playlistsTrending[2].image">
+            <a class="plst-ea-3" [routerLink]="'/playlist/' + playlistsTrending[2]?.id?.toString()">
+                <img class="plst-ea-img" [src]="playlistsTrending[2]?.image">
                 <div class="podium">3º</div>
             </a>
-            <a class="plst-ea-5" [routerLink]="'/playlist/' + playlistsTrending[4].id.toString()">
-                <img class="plst-ea-img" [src]="playlistsTrending[4].image">
+            <a class="plst-ea-5" [routerLink]="'/playlist/' + playlistsTrending[4]?.id?.toString()">
+                <img class="plst-ea-img" [src]="playlistsTrending[4]?.image">
                 <div class="podium">5º</div>
             </a>
         </div>
 
-        <a class="ver-mais" routerLink="/em-alta">ver mais</a>
+        <!--<a class="ver-mais" routerLink="/em-alta">ver mais</a>-->
     </div>
 
     <div class="plsts-publicas">
         <h1 name="plsts-publicas">Playlists Públicas</h1>
 
         <div class="plsts-pb-lst">
-            <div class="" *ngFor="let plst of playlistsPublic | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsPublic | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>
@@ -42,7 +42,7 @@
     <div class="recomendacoes" *ngIf="isLogged">
         <h1 name="recomendacoes">Recomendações para você</h1>
         <div class="plsts-rc-lst">
-            <div class="" *ngFor="let plst of playlistsRecommended | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsRecommended | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <h1 name="minhas-plsts">Minhas Playlists</h1>
 
         <div class="plsts-mp-lst">
-            <div class="" *ngFor="let plst of playlistsUser | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsUser | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>

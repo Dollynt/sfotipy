@@ -146,8 +146,9 @@ body {
 .titulo-cadastro {
     font-family: 'Iceland', sans-serif;
     font-size: 64px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1.8rem;
 
 }
 
@@ -157,7 +158,7 @@ body {
     -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
 }
 
-.tela-login {
+.tela-cadastro {
     width: 640px;
     height: 600px;
     display: flex;
@@ -166,6 +167,7 @@ body {
     border-top-right-radius: 32px;
     border-top-left-radius: 32px;
     align-items: center;
+    margin-bottom: 6rem;
 }
 
 .input-box {
@@ -234,8 +236,10 @@ input::placeholder {
     border-radius: 18px;
     width: 100%;
     height: 3.5rem;
-    margin-top: 1.4rem;
     border: none;
+    padding-right: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 4px;
 }
 
 .cadastro-botao button:enabled {
@@ -291,6 +295,8 @@ input::placeholder {
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
     vertical-align: center;
+    position: absolute;
+    bottom: 11rem;
 }
 
 .tela-redirec div {

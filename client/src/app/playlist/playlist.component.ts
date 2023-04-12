@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Category } from '../../../../common/category';
 import { MusicasService } from '../musicas.service';
@@ -13,6 +14,7 @@ import { Location } from '@angular/common';
 
 import { CategoryService } from '../category.service';
 import { MusicPlayerService } from '../services/music-player.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -28,7 +30,10 @@ export class PlaylistComponent implements OnInit {
     private musicService: MusicasService,
     private categoryService: CategoryService,
     private location: Location,
-    public musicPlayerService: MusicPlayerService) { }
+    public musicPlayerService: MusicPlayerService,
+    private titleService: Title,
+    private router: Router) { }
+
 
 
   musicasFiltradas: string[] = [];
@@ -79,12 +84,16 @@ export class PlaylistComponent implements OnInit {
   adicionarMusica(musica: string) {
     this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
       const musicaEncontrada = musicasArray.find(m => m.name === musica);
-
       if (musicaEncontrada) {
+        const musicaInArray = this.musicas_add.value.find(m => m.id === musicaEncontrada.id)
+        if (musicaInArray) {
+          alert('Música já adicionada')
+          return
+        }
+
         this.musicas_add.next([...this.musicas_add.value, musicaEncontrada]);
       }
     })
-
   }
 
   updateMusicas() {
@@ -100,9 +109,17 @@ export class PlaylistComponent implements OnInit {
 
     const update = this.playlistService.updatePlaylistMusics(playlist).subscribe()
     if (update) {
-      alert('Músicas atualizadas com sucesso!')
+      //alert('Músicas atualizadas com sucesso!')
       window.location.reload();
     }
+  }
+
+  deletePLaylist() {
+    const deletar = this.playlistService.deletarPlaylist(this.playlistId).subscribe()
+      if (deletar) {
+        alert('Playlist deletada com sucesso')
+        this.router.navigate(['/minhas_playlists']);
+      }
   }
 
   filtrarMusicas(event: KeyboardEvent) {
@@ -119,6 +136,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     const playId = this.route.snapshot.params["id"];
     this.playlistId = playId;
     this.musicas.subscribe(musicas => {
@@ -135,6 +153,7 @@ export class PlaylistComponent implements OnInit {
             .subscribe(
               as => {
                 this.selectedPlaylist = as;
+                this.titleService.setTitle(this.selectedPlaylist.name);
                 for (var i of this.selectedPlaylist.musics) {
                   this.musicService.getMusicsById(i)
                     .subscribe(

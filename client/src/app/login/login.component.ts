@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,15 +23,25 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private userService: UserService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Login");
     //console.log('Mensagem recebida: ', this.message);
+    this.checkToken();
     this.redirectToHomePage();
     this.LoginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]]
     });
+  }
+
+  checkToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.loginService.updateLoginStatus(true);
+    }
   }
 
   redirectToHomePage() {
@@ -66,6 +77,7 @@ export class LoginComponent implements OnInit {
           console.log(dataServer);
           if (dataServer.success) {
             this.erro_servidor = true;
+            localStorage.setItem('currentUser', JSON.stringify({ email: dataServer.email, token: dataServer.token, id: dataServer.id }));
             this.userService.setUserId(dataServer.id);
             this.loginService.updateLoginStatus(true);
             this.router.navigate(['']);
@@ -81,5 +93,4 @@ export class LoginComponent implements OnInit {
       );
     }
   }
-
 }

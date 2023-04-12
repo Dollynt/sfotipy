@@ -53,7 +53,7 @@ input[name="search"] {
 
 .playlistslista {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -66,6 +66,12 @@ input[name="search"] {
 }
 
 .see-more-music {
+    text-align: end;
+    width: 100%;
+    cursor: pointer;
+}
+
+.see-more-playlist {
     text-align: end;
     width: 100%;
     cursor: pointer;

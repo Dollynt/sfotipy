@@ -2,7 +2,7 @@
 
 
   <div class="header">
-    <img class="img" src="{{selectedPlaylist.image}}" alt="Capa da playlist" srcset="">
+    <img class="img" src="{{selectedPlaylist.image || '/assets/default.png'}}" alt="Capa da playlist" srcset="">
     <div class="content">
       <div class="text">
         <h1 class="playlist_name" name="playlist-name">{{selectedPlaylist.name}}</h1>
@@ -22,6 +22,8 @@
             </span>
           </div>
         </details>
+        <br>
+        <button class="delete" (click)="deletePLaylist()">Deletar playlist</button>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">
@@ -32,10 +34,10 @@
     <div class="player">
       <div class="player-outer">
         <div class="player-inner">
-          <button *ngIf="isPausable()" (click)="musicPlayerService.pause()"><img src="/assets/pause.svg"
-              alt=""></button>
-          <button *ngIf="!isPausable()" (click)="musicPlayerService.playPlaylist(selectedPlaylist)"><img
-              src="/assets/play.svg" alt=""></button>
+          <button id="pause-playlist-{{selectedPlaylist?.name}}" *ngIf="isPausable()"
+            (click)="musicPlayerService.pause()"><img src="/assets/pause.svg" alt=""></button>
+          <button id="play-playlist-{{selectedPlaylist?.name}}" *ngIf="!isPausable()"
+            (click)="musicPlayerService.playPlaylist(selectedPlaylist)"><img src="/assets/play.svg" alt=""></button>
         </div>
       </div>
     </div>
@@ -58,7 +60,7 @@
         <button type="button" class="closePopUp" (click)="hidePopup()">X</button>
       </div>
       <div class="opcoes_musica">
-        <p *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</p>
+        <p *ngFor="let musica of musicasFiltradas" class="{{musica}}" (click)="adicionarMusica(musica)">{{musica}}</p>
       </div>
     </div>
     <h4 class="popUp-text" *ngIf="musicas_add.getValue().length > 0">Músicas Selecionadas</h4>

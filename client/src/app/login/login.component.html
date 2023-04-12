@@ -10,7 +10,7 @@
           <label for="email">
             <img src="../../assets/email_branco.svg" class="icones" id="email-i" alt="icone de email">
           </label>
-          <input id="email" type="email" name="email" placeholder="exemplo@gmail.com" formControlName="email">
+          <input id="email" class="email_input" type="email" name="email" placeholder="exemplo@gmail.com" formControlName="email">
           <div class="validation-error">
             <div *ngIf="(erro_servidor === false)" class="div-fantastica"><img src="../../assets/erro_input.svg">
               <p class="incorretos">E-mail ou senha incorretos!</p>
@@ -31,7 +31,7 @@
           <label for="password">
             <img src="../../assets/senha_branco.svg" class="icones" id="senha-i" alt="icone de senha">
           </label>
-          <input id="password" type="password" name="password" placeholder="••••••••" formControlName="senha">
+          <input id="password" type="password" class="password_input" name="password" placeholder="••••••••" formControlName="senha">
           <div class="validation-error">
             <div *ngIf="(submitted) && senha.errors?.['required'] && !(erro_servidor ===false)" class="div-fantastica">
               <img src="../../assets/erro_input.svg">
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="entrar-botao"><button type="submit">Entrar</button>
+        <div class="entrar-botao"><button name="entrar" class="login_input_button" type="submit">Entrar</button>
         </div>
       </Form>
     </div>

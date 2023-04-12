@@ -18,23 +18,9 @@ export class NavbarComponent {
     if ((typeof event !== 'undefined')) this.show = event;
   }
 
-  toLogin(): void {
-    //To do
-  }
-
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe(newStatus => {
       this.isLogged = newStatus;
     });
-    /*
-    this.userService.getUserById(this.userId)
-      .pipe(
-        tap({
-        next: as => { this.user = as; },
-        error: msg => { alert(msg.message); }
-        })
-      )
-      .subscribe();
-    */
   }
 }
